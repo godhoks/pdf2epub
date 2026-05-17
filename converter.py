@@ -37,3 +37,23 @@ def read_pdf_metadata(pdf_path: str) -> dict:
         }
     except Exception:
         return {"title": "", "author": ""}
+
+
+def build_command(
+    calibre_path: str,
+    input_pdf: str,
+    output_epub: str,
+    title: str,
+    author: str,
+    language: str,
+) -> list:
+    return [
+        calibre_path, input_pdf, output_epub,
+        "--title", title,
+        "--authors", author,
+        "--language", language,
+        "--chapter-mark", "pagebreak",
+        "--extra-css", "",
+        "--base-font-size", "0",
+        "--font-size-mapping", "0,0,0,0,0,0",
+    ]
