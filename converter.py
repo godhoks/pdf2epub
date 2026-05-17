@@ -25,3 +25,15 @@ def find_calibre() -> str:
     raise CalibreNotFoundError(
         "找不到 Calibre。請安裝：https://calibre-ebook.com/download"
     )
+
+
+def read_pdf_metadata(pdf_path: str) -> dict:
+    try:
+        reader = PdfReader(pdf_path)
+        meta = reader.metadata
+        return {
+            "title": (meta.title or "") if meta else "",
+            "author": (meta.author or "") if meta else "",
+        }
+    except Exception:
+        return {"title": "", "author": ""}
