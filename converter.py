@@ -1,0 +1,27 @@
+import shutil
+import os
+import subprocess
+from typing import Callable
+from pypdf import PdfReader
+
+
+class CalibreNotFoundError(Exception):
+    pass
+
+
+CALIBRE_DEFAULT_PATHS = [
+    r"C:\Program Files\Calibre2\ebook-convert.exe",
+    r"C:\Program Files (x86)\Calibre2\ebook-convert.exe",
+]
+
+
+def find_calibre() -> str:
+    path = shutil.which("ebook-convert")
+    if path:
+        return path
+    for p in CALIBRE_DEFAULT_PATHS:
+        if os.path.exists(p):
+            return p
+    raise CalibreNotFoundError(
+        "找不到 Calibre。請安裝：https://calibre-ebook.com/download"
+    )
