@@ -66,11 +66,13 @@ def run_conversion(command: list, on_log: Callable[[str], None]) -> bool:
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         creationflags=creationflags,
+        encoding="utf-8",
+        errors="replace",
     )
     while True:
         line = process.stdout.readline()
         if not line:
             break
-        on_log(line.decode("utf-8", errors="replace").strip())
+        on_log(line.strip())
     process.wait()
     return process.returncode == 0

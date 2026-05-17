@@ -93,7 +93,7 @@ def test_run_conversion_success_returns_true():
 
     with patch('converter.subprocess.Popen') as mock_popen:
         mock_proc = MagicMock()
-        mock_proc.stdout.readline.side_effect = [b"Converting...\n", b""]
+        mock_proc.stdout.readline.side_effect = ["Converting...\n", ""]
         mock_proc.wait.return_value = None
         mock_proc.returncode = 0
         mock_popen.return_value = mock_proc
@@ -112,7 +112,7 @@ def test_run_conversion_failure_returns_false():
 
     with patch('converter.subprocess.Popen') as mock_popen:
         mock_proc = MagicMock()
-        mock_proc.stdout.readline.side_effect = [b"Error\n", b""]
+        mock_proc.stdout.readline.side_effect = ["Error\n", ""]
         mock_proc.wait.return_value = None
         mock_proc.returncode = 1
         mock_popen.return_value = mock_proc
