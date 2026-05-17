@@ -67,7 +67,10 @@ def test_build_command_contains_required_flags():
     assert "--title" in cmd and "書名" in cmd
     assert "--authors" in cmd and "作者" in cmd
     assert "--language" in cmd and "zh-Hant" in cmd
+    assert "--chapter-mark" in cmd and "pagebreak" in cmd
     assert "--extra-css" in cmd
+    assert "--base-font-size" in cmd
+    assert "--font-size-mapping" in cmd and "0,0,0,0,0,0" in cmd
 
 
 def test_build_command_no_styles():
@@ -79,3 +82,6 @@ def test_build_command_no_styles():
     assert "--base-font-size" in cmd
     idx2 = cmd.index("--base-font-size")
     assert cmd[idx2 + 1] == "0"
+    assert "--font-size-mapping" in cmd
+    idx3 = cmd.index("--font-size-mapping")
+    assert cmd[idx3 + 1] == "0,0,0,0,0,0"
