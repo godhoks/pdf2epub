@@ -34,7 +34,7 @@ pip install pyinstaller
 pyinstaller --onefile --windowed --name "PDF2EPUB" --icon icon.ico --add-data "icon.ico;." --collect-all customtkinter --collect-all tkinterdnd2 main.py
 ```
 
-輸出於 `dist/PDF2EPUB.exe`。對方仍需安裝 Calibre。
+輸出於 `dist/PDF2EPUB.exe`。仍需安裝 Calibre。
 
 ## 專案結構
 
