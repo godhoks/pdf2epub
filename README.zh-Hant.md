@@ -2,7 +2,11 @@
 
 **v1.0.0** · 🌐 [English](README.md) · [繁體中文](README.zh-Hant.md) · [简体中文](README.zh-Hans.md)
 
+[![下載 .exe](https://img.shields.io/badge/下載-PDF2EPUB.exe-blue?style=for-the-badge&logo=windows)](https://github.com/godhoks/pdf2epub/releases/latest/download/PDF2EPUB.exe)
+
 簡單的桌面 GUI 工具，將 PDF 轉成 EPUB。輸出的 EPUB 不含內建樣式，由閱讀器（如 Kobo）自行套用。
+
+> Windows 使用者：點上方按鈕直接下載最新的獨立 `.exe`。仍需安裝 [Calibre](https://calibre-ebook.com/download)。
 
 ## 功能
 

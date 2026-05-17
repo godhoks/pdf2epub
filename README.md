@@ -2,7 +2,11 @@
 
 **v1.0.0** · 🌐 [English](README.md) · [繁體中文](README.zh-Hant.md) · [简体中文](README.zh-Hans.md)
 
+[![Download .exe](https://img.shields.io/badge/Download-PDF2EPUB.exe-blue?style=for-the-badge&logo=windows)](https://github.com/godhoks/pdf2epub/releases/latest/download/PDF2EPUB.exe)
+
 A simple desktop GUI tool that converts PDF files to EPUB format. Output EPUBs ship without bundled styles, letting your reader (Kobo, etc.) apply its own typography.
+
+> Windows users: click the badge above to download the latest standalone `.exe`. You still need [Calibre](https://calibre-ebook.com/download) installed.
 
 ## Features
 
