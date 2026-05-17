@@ -8,9 +8,17 @@ from converter import find_calibre, CalibreNotFoundError
 
 
 def test_find_calibre_via_which():
-    with patch('shutil.which', return_value='C:/Program Files/Calibre2/ebook-convert.exe'):
+    expected = r"C:\Program Files\Calibre2\ebook-convert.exe"
+    with patch('shutil.which', return_value=expected):
         result = find_calibre()
-    assert result == 'C:/Program Files/Calibre2/ebook-convert.exe'
+    assert result == expected
+
+
+def test_find_calibre_via_default_paths():
+    with patch('shutil.which', return_value=None), \
+         patch('os.path.exists', side_effect=lambda p: p == r"C:\Program Files\Calibre2\ebook-convert.exe"):
+        result = find_calibre()
+    assert result == r"C:\Program Files\Calibre2\ebook-convert.exe"
 
 
 def test_find_calibre_not_found_raises():
