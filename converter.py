@@ -4,6 +4,8 @@ import subprocess
 from typing import Callable
 from pypdf import PdfReader
 
+__version__ = "1.0.0"
+
 
 class CalibreNotFoundError(Exception):
     pass

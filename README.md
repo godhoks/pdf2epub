@@ -1,51 +1,59 @@
-# PDF → EPUB 轉換器
+# PDF2EPUB Converter
 
-將 PDF 檔案轉換為 EPUB 電子書格式的桌面工具，輸出樣式由閱讀器（如 Kobo）自行套用。
+**v1.0.0** · 🌐 [English](README.md) · [繁體中文](README.zh-Hant.md) · [简体中文](README.zh-Hans.md)
 
-## 功能
+A simple desktop GUI tool that converts PDF files to EPUB format. Output EPUBs ship without bundled styles, letting your reader (Kobo, etc.) apply its own typography.
 
-- 支援純文字 PDF 與掃描版 PDF（OCR）
-- GUI 介面，支援拖曳
-- 保留 PDF 圖片
-- 自動偵測章節結構，保留原有目錄
-- 輸出 EPUB 不含內建樣式
-- 支援繁體中文、簡體中文、English
+## Features
 
-## 前置需求
+- Converts text-based and scanned PDFs (OCR via Calibre)
+- Drag-and-drop GUI built with CustomTkinter
+- Preserves images and chapter structure from the source PDF
+- No bundled CSS — reader controls typography
+- Interface available in Traditional Chinese, Simplified Chinese, and English
 
-安裝 [Calibre](https://calibre-ebook.com/download)（免費），轉換引擎依賴其 `ebook-convert`。
+## Prerequisite
 
-## 安裝與執行
+Install [Calibre](https://calibre-ebook.com/download) (free). The converter shells out to Calibre's `ebook-convert`.
+
+## Install & Run (from source)
 
 ```bash
 pip install -r requirements.txt
 python main.py
 ```
 
-## 打包成 .exe
+## Build a Standalone .exe
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed --name "PDF2EPUB轉換器" --collect-all customtkinter --collect-all tkinterdnd2 main.py
+pyinstaller --onefile --windowed --name "PDF2EPUB" --icon icon.ico --add-data "icon.ico;." --collect-all customtkinter --collect-all tkinterdnd2 main.py
 ```
 
-輸出在 `dist/PDF2EPUB轉換器.exe`。
+Output: `dist/PDF2EPUB.exe`. Recipients still need Calibre installed.
 
-## 專案結構
+## Project Structure
 
 ```
 pdf2epub/
-├── main.py          # 程式入口
-├── gui.py           # CustomTkinter 視窗
-├── converter.py     # 呼叫 Calibre 邏輯
+├── main.py          # Entry point
+├── gui.py           # CustomTkinter window + i18n
+├── converter.py     # Calibre wrapper
+├── make_icon.py     # Generates icon.ico
+├── icon.ico
 ├── requirements.txt
 └── tests/
     └── test_converter.py
 ```
 
-## 相依套件
+## Dependencies
 
-- `customtkinter` — 現代感 GUI
-- `pypdf` — 讀取 PDF metadata
-- `tkinterdnd2` — 拖曳支援
-- Calibre（系統安裝）— 轉換引擎
+- `customtkinter` — modern GUI
+- `pypdf` — PDF metadata reading
+- `tkinterdnd2` — drag-and-drop
+- `Pillow` — icon generation
+- Calibre (system install) — conversion engine
+
+## License
+
+MIT — see [LICENSE](LICENSE).
