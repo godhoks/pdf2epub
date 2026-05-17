@@ -57,3 +57,20 @@ def build_command(
         "--base-font-size", "0",
         "--font-size-mapping", "0,0,0,0,0,0",
     ]
+
+
+def run_conversion(command: list, on_log: Callable[[str], None]) -> bool:
+    creationflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
+    process = subprocess.Popen(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        creationflags=creationflags,
+    )
+    while True:
+        line = process.stdout.readline()
+        if not line:
+            break
+        on_log(line.decode("utf-8", errors="replace").strip())
+    process.wait()
+    return process.returncode == 0

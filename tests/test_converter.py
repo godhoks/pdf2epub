@@ -85,3 +85,41 @@ def test_build_command_no_styles():
     assert "--font-size-mapping" in cmd
     idx3 = cmd.index("--font-size-mapping")
     assert cmd[idx3 + 1] == "0,0,0,0,0,0"
+
+
+def test_run_conversion_success_returns_true():
+    from converter import run_conversion
+    log_lines = []
+
+    with patch('converter.subprocess.Popen') as mock_popen:
+        mock_proc = MagicMock()
+        mock_proc.stdout.readline.side_effect = [b"Converting...\n", b""]
+        mock_proc.wait.return_value = None
+        mock_proc.returncode = 0
+        mock_popen.return_value = mock_proc
+
+        result = run_conversion(
+            command=["ebook-convert", "a.pdf", "a.epub"],
+            on_log=lambda line: log_lines.append(line),
+        )
+
+    assert result is True
+    assert "Converting..." in log_lines
+
+
+def test_run_conversion_failure_returns_false():
+    from converter import run_conversion
+
+    with patch('converter.subprocess.Popen') as mock_popen:
+        mock_proc = MagicMock()
+        mock_proc.stdout.readline.side_effect = [b"Error\n", b""]
+        mock_proc.wait.return_value = None
+        mock_proc.returncode = 1
+        mock_popen.return_value = mock_proc
+
+        result = run_conversion(
+            command=["ebook-convert", "a.pdf", "a.epub"],
+            on_log=lambda line: None,
+        )
+
+    assert result is False
