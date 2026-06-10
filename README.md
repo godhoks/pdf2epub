@@ -1,6 +1,6 @@
 # PDF2EPUB Converter
 
-**v1.0.0** · 🌐 [English](README.md) · [繁體中文](README.zh-Hant.md) · [简体中文](README.zh-Hans.md)
+**v1.0.1** · 🌐 [English](README.md) · [繁體中文](README.zh-Hant.md) · [简体中文](README.zh-Hans.md)
 
 [![Download .exe](https://img.shields.io/badge/Download-PDF2EPUB.exe-blue?style=for-the-badge&logo=windows)](https://github.com/godhoks/pdf2epub/releases/latest/download/PDF2EPUB.exe)
 
